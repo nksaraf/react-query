@@ -69,14 +69,20 @@ export function useMutation<
   arg3?: UseMutationOptions<TData, TError, TVariables, TContext>
 ): UseMutationResult<TData, TError, TVariables, TContext> {
   const options = parseMutationArgs(arg1, arg2, arg3)
+  return useBaseMutation(options, MutationObserver)
+}
+
+export function useBaseMutation<TData, TError, TVariables, TContext>(
+  options: UseMutationOptions<TData, TError, TVariables, TContext>,
+  Observer: typeof MutationObserver) {
   const queryClient = useQueryClient()
 
   // Create mutation observer
   const observerRef = React.useRef<
-    MutationObserver<TData, TError, TVariables, TContext>
+    MutationObserver<any, any, any, any>
   >()
   const observer =
-    observerRef.current || new MutationObserver(queryClient, options)
+    observerRef.current || new Observer<TData, TError, TVariables, TContext>(queryClient, options)
   observerRef.current = observer
 
   // Update options
