@@ -8,10 +8,11 @@ export {
   useQueryErrorResetBoundary,
 } from './QueryErrorResetBoundary'
 export { useIsFetching } from './useIsFetching'
-export { useMutation } from './useMutation'
+export { useMutation, useBaseMutation } from './useMutation'
 export { useQuery } from './useQuery'
 export { useQueries } from './useQueries'
 export { useInfiniteQuery } from './useInfiniteQuery'
+export { useBaseQuery } from './useBaseQuery'
 
 // Types
 export * from './types'
